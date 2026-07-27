@@ -36,7 +36,9 @@ if your `.zshrc` sets a `ZSH_THEME` that would compete for `PROMPT`.
 <summary><b>Homebrew</b></summary>
 
 ```sh
-brew install --HEAD https://raw.githubusercontent.com/gleete/promptconf/main/Formula/promptconf.rb
+brew tap gleete/promptconf https://github.com/gleete/promptconf
+brew trust gleete/promptconf
+brew install promptconf
 ```
 
 ```zsh
@@ -46,6 +48,11 @@ source /opt/homebrew/share/promptconf/promptconf.zsh
 
 Intel macOS uses `/usr/local` instead. Hardcode whichever applies rather than
 calling `brew --prefix` — it shells out to Ruby and would slow every shell start.
+
+The URL is needed because this repo is not named `homebrew-promptconf`, and
+`brew trust` because Homebrew 4.6+ refuses to load formulae from third-party
+taps until you say so. `brew install --HEAD promptconf` tracks `main` instead of
+the latest tag.
 </details>
 
 <details>
