@@ -184,13 +184,19 @@ _promptconf_default() {   # <var> <value>
 _promptconf_default PROMPTCONF_LINES 2
 _promptconf_default PROMPTCONF_MARKER '❯'
 
-_promptconf_default PROMPTCONF_SEPARATOR $'\ue0b0'
+# \u escapes are converted using the current character set, so under LC_ALL=C
+# - common on servers, in containers and in CI - zsh fails to parse them at all
+# and nothing below this point loads. Force a UTF-8 ctype just for these two.
+() {
+  local LC_ALL='' LC_CTYPE='en_US.UTF-8'
+  _promptconf_default PROMPTCONF_SEPARATOR $'\ue0b0'
 # Drawn between segments that share a background. It also keeps columns
 # aligned: without it those boundaries are a one-character gutter while
 # colour-change boundaries are three, so segments start at different
 # columns from one scheme to the next. Set it to ' ' to keep the
 # alignment without a glyph, or '' for a plain single space.
-_promptconf_default PROMPTCONF_SEPARATOR_THIN $'\ue0b1'
+  _promptconf_default PROMPTCONF_SEPARATOR_THIN $'\ue0b1'
+}
 typeset -g _promptconf_bg='NONE'
 
 # What the git segment appends after the branch. The segment colour already
@@ -659,7 +665,9 @@ _promptconf_doctor() {
     && print -P "  git  $ok" \
     || print -P "  git  $warn - the git segment will stay hidden"
 
-  print -P "\n  powerline glyphs: [$PROMPTCONF_SEPARATOR] [$''] [$PROMPTCONF_GLYPH[branch]]"
+  # Literal glyphs, not $'..' - that form is not interpreted inside double
+  # quotes, and the separators may have been overridden to something else.
+  print -P "\n  powerline glyphs: [] [] []"
   print    "    boxes or blanks here mean you need a Powerline-patched font"
   print    "    https://github.com/powerline/fonts"
   print -P "  plain unicode: [$PROMPTCONF_GLYPH[staged]] [$PROMPTCONF_GLYPH[unstaged]] [$PROMPTCONF_GLYPH[untracked]] [$PROMPTCONF_GLYPH[conflict]] [$PROMPTCONF_GLYPH[stashed]] [$PROMPTCONF_GLYPH[ahead]] [$PROMPTCONF_GLYPH[behind]] [$PROMPTCONF_GLYPH[detached]] [$PROMPTCONF_GLYPH[tag]]"
