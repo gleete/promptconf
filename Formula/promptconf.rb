@@ -2,7 +2,7 @@ class Promptconf < Formula
   desc "Configurable powerline prompt for zsh"
   homepage "https://github.com/gleete/promptconf"
   url "https://github.com/gleete/promptconf/archive/refs/tags/v0.1.0.tar.gz"
-  sha256 "f7de54e85821fe3531d0edf7a334b052638e1f50fcc616ce8c48a6165e8f127a"
+  sha256 "86834ba0b9a94fd62efb7a443daa1790f31ac6fbe8106eed7208d9f03865eecb"
   license "MIT"
   head "https://github.com/gleete/promptconf.git", branch: "main"
 
