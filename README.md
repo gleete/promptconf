@@ -87,11 +87,14 @@ source ~/.promptconf/promptconf.zsh
 **As a theme** — the most idiomatic route, since a prompt is what a theme is:
 
 ```sh
-ln -s ~/.promptconf $ZSH_CUSTOM/themes/promptconf
+ln -s ~/.promptconf/promptconf.zsh-theme $ZSH_CUSTOM/themes/promptconf.zsh-theme
 ```
 ```zsh
 ZSH_THEME="promptconf"
 ```
+
+The link is the `.zsh-theme` file, not the directory — oh-my-zsh sources
+`$ZSH_CUSTOM/themes/$ZSH_THEME.zsh-theme` by name.
 
 **As a plugin**, if you would rather manage it in the plugins array:
 
@@ -102,6 +105,9 @@ ln -s ~/.promptconf $ZSH_CUSTOM/plugins/promptconf
 ZSH_THEME=""
 plugins=(git promptconf)
 ```
+
+Here it is the directory, since oh-my-zsh looks for
+`plugins/<name>/<name>.plugin.zsh`.
 
 The theme and plugin files are three-line shims around the same
 `promptconf.zsh`. Nothing about the tool changes between them.
