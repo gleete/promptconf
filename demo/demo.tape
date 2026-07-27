@@ -7,9 +7,9 @@
 Output demo/promptconf.gif
 
 Set Shell zsh
-Set FontSize 18
-Set Width 1500
-Set Height 700
+Set FontSize 20
+Set Width 1280
+Set Height 620
 Set Padding 20
 Set TypingSpeed 55ms
 Set Theme { "name": "solarized-dark", "background": "#001e27", "foreground": "#708284", "cursor": "#708284", "selection": "#002831", "black": "#002831", "red": "#d11c24", "green": "#738a05", "yellow": "#a57706", "blue": "#2176c7", "magenta": "#c61c6f", "cyan": "#259286", "white": "#eae3cb", "brightBlack": "#001e27", "brightRed": "#bd3613", "brightGreen": "#475b62", "brightYellow": "#536870", "brightBlue": "#708284", "brightMagenta": "#5956ba", "brightCyan": "#819090", "brightWhite": "#fcf4dc" }
